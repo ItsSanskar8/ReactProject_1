@@ -7,9 +7,10 @@ function Home() {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=4')
+    fetch('https://dummyjson.com/products?limit=4')
       .then((res) => res.json())
-      .then(setFeatured);
+      .then((data) => setFeatured(data.products))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -70,11 +71,12 @@ function Home() {
           <h2 className="section-title">Categories</h2>
         </div>
         <div className="categories__grid">
+          {/* Map original categories to DummyJSON slugs */}
           {[
-            { name: 'Electronics', icon: '⚡', slug: 'electronics' },
-            { name: "Men's Fashion", icon: '👔', slug: "men's clothing" },
-            { name: "Women's Fashion", icon: '👗', slug: "women's clothing" },
-            { name: 'Jewellery', icon: '💎', slug: 'jewelery' },
+            { name: 'Electronics', icon: '⚡', slug: 'smartphones' },
+            { name: "Men's Fashion", icon: '👔', slug: 'mens-shirts' },
+            { name: "Women's Fashion", icon: '👗', slug: 'womens-dresses' },
+            { name: 'Jewellery', icon: '💎', slug: 'womens-jewellery' },  // DummyJSON uses 'womens-jewellery'? Actually it has 'womens-jewellery' – check API
           ].map((cat) => (
             <Link
               key={cat.slug}

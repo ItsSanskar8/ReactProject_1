@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import { WishlistContext } from '../context/WishlistContext'; 
+import { WishlistContext } from '../context/WishlistContext';
 import './ProductCard.css';
 
 function renderStars(rating) {
@@ -12,7 +12,7 @@ function renderStars(rating) {
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const { cartItems, setCartItems } = useContext(CartContext);
-  const { isInWishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext); 
+  const { isInWishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const existingItem = cartItems.find(item => item.id === product.id);
   const isInCart = Boolean(existingItem);
@@ -30,7 +30,6 @@ function ProductCard({ product }) {
     });
   };
 
-  // add this function
   const toggleWishlist = (e) => {
     e.stopPropagation();
     if (isInWishlist(product.id)) {
@@ -44,7 +43,7 @@ function ProductCard({ product }) {
     <div className="card" onClick={() => navigate(`/products/${product.id}`)}>
       <div className="card__image-wrap">
         <span className="card__category">{product.category}</span>
-        <img src={product.image} alt={product.title} loading="lazy" />
+        <img src={product.images?.[0] || product.image} alt={product.title} loading="lazy" />
       </div>
 
       <div className="card__body">
@@ -52,14 +51,14 @@ function ProductCard({ product }) {
 
         {product.rating && (
           <div className="card__rating">
-            <span className="card__stars">{renderStars(product.rating.rate)}</span>
-            <span>({product.rating.count})</span>
+            <span className="card__stars">{renderStars(product.rating)}</span>
+            <span>({product.ratingCount || '—'})</span>
           </div>
         )}
 
         <div className="card__footer">
           <span className="card__price">₹{product.price}</span>
-          <div> 
+          <div>
             <button
               className={`card__btn ${isInCart ? 'card__btn--added' : 'card__btn--add'}`}
               onClick={addToCart}

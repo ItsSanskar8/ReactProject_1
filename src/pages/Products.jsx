@@ -16,10 +16,10 @@ function Products() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://dummyjson.com/products')
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
+        setProducts(data.products);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -51,7 +51,7 @@ function Products() {
     } else if (sort === 'high') {
       result.sort((a, b) => b.price - a.price);
     } else if (sort === 'rating') {
-      result.sort((a, b) => (b.rating?.rate || 0) - (a.rating?.rate || 0));
+      result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
 
     setFilteredProducts(result);

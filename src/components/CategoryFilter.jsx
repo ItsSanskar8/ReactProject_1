@@ -3,10 +3,18 @@ import './CategoryFilter.css';
 
 const categories = [
   { value: 'all', label: 'All' },
-  { value: 'electronics', label: 'Electronics' },
-  { value: 'jewelery', label: 'Jewellery' },
-  { value: "men's clothing", label: 'Men' },
-  { value: "women's clothing", label: 'Women' },
+  { value: 'smartphones', label: 'Smartphones' },
+  { value: 'laptops', label: 'Laptops' },
+  { value: 'fragrances', label: 'Fragrances' },
+  { value: 'skincare', label: 'Skincare' },
+  { value: 'groceries', label: 'Groceries' },
+  { value: 'home-decoration', label: 'Home Decor' },
+  { value: 'furniture', label: 'Furniture' },
+  { value: 'tops', label: 'Tops' },
+  { value: 'womens-dresses', label: "Women's Dresses" },
+  { value: 'mens-shirts', label: "Men's Shirts" },
+  { value: 'mens-shoes', label: "Men's Shoes" },
+  { value: 'womens-shoes', label: "Women's Shoes" },
 ];
 
 function CategoryFilter({ category, setCategory }) {

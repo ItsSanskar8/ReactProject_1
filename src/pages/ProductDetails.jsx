@@ -20,7 +20,7 @@ function ProductDetails() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`https://dummyjson.com/products/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Product not found');
         return res.json();
@@ -88,7 +88,7 @@ function ProductDetails() {
       <div className="pd__layout">
         <div className="pd__image-wrap">
           <span className="pd__category">{product.category}</span>
-          <img className="pd__image" src={product.image} alt={product.title} />
+          <img className="pd__image" src={product.images?.[0] || product.image} alt={product.title} />
         </div>
 
         <div className="pd__info">
@@ -96,9 +96,9 @@ function ProductDetails() {
 
           {product.rating && (
             <div className="pd__rating">
-              <span className="pd__stars">{renderStars(product.rating.rate)}</span>
+              <span className="pd__stars">{renderStars(product.rating)}</span>
               <span className="pd__rating-text">
-                {product.rating.rate} — {product.rating.count} reviews
+                {product.rating} / 5
               </span>
             </div>
           )}
